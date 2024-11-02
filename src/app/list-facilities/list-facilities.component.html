@@ -1,1 +1,38 @@
-<p>list-facilities works!</p>
+<div *ngIf="facilities.length === 0">
+    <p>No facilities available.</p>
+</div>
+
+<h1>Facilities List</h1>
+<button class="btn btn-primary mb-3" routerLink="/facilities/create">Add Facility</button>
+  
+<table *ngIf="facilities.length > 0" class="table table-striped">
+    <thead>
+        <tr>
+        <th>Facility Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Postal Code</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let facility of facilities">
+        <td>{{ facility.facility_name }}</td>
+        <td>{{ facility.address_1 }} {{ facility.address_2 }}</td>
+        <td>{{ facility.city }}</td>
+        <td>{{ facility.state }}</td>
+        <td>{{ facility.postal }}</td>
+        <td>{{ facility.contact_number }}</td>
+        <td>{{ facility.email }}</td>
+        <td>
+            <!-- Placeholder buttons for edit and delete actions -->
+            <button class="btn btn-primary btn-sm" [routerLink]="['/facilities/edit', facility.facilityId]">Edit</button>
+            <button class="btn btn-danger btn-sm" [routerLink]="['/facilities/delete', facility.facilityId]">Delete</button>
+        </td>
+        </tr>
+    </tbody>
+</table>
+  
